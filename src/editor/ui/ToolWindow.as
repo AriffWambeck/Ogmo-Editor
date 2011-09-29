@@ -34,8 +34,8 @@ package editor.ui
 		[Embed(source = '../../../assets/tool_selectarea.png')]
 		static private const ImgSelectArea:Class;
 		
-		private const GRID_TOOLS:Array 		= [ToolGridPencil, ToolGridFill, ToolGridRectangle];
-		private const GRID_IMAGE:Array		= [ImgPaint, ImgFill, ImgFillRect];
+		private const GRID_TOOLS:Array 		= [ToolGridPencil, ToolGridFill, ToolGridRectangle, ToolGridSelectArea];
+		private const GRID_IMAGE:Array		= [ImgPaint, ImgFill, ImgFillRect, ImgSelectArea];
 		
 		private const TILE_TOOLS:Array 		= [ToolTilePlace, ToolTileEyedrop, ToolTileRectangle, ToolTileSpecialRect];
 		private const TILE_IMAGE:Array		= [ImgPaint, ImgEyedrop, ImgFillRect, ImgSpecialRect];
@@ -95,8 +95,11 @@ package editor.ui
 			var t:ToolButton;
 			for (var i:int = 0; i < tools.length; i++)
 			{
-				t = new ToolButton(3 + i * 35, 3, arrI[i], tools[i]);
-				ui.addChild(t);
+				if (arrI[i] != null) 
+				{
+					t = new ToolButton(3 + i * 35, 3, arrI[i], tools[i]);
+					ui.addChild(t);
+				}
 			}
 			
 			active = (tools.length > 1);
